@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // ? Middleware:
 app.use(cors());
@@ -25,8 +25,16 @@ async function run() {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
 
+        const coffeeCollection = client.db("coffeeDB").collection('coffee');
+        // const haiku = database.collection("haiku");
 
+        app.post('/add-coffee', async(req, res) => {
+            const newCoffee = req.body;
+            console.log(newCoffee);
 
+            const result = await coffeeCollection.insertOne(newCoffee);
+            res.send(result);
+        })
         
 
         // Send a ping to confirm a successful connection

@@ -1,5 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 function AddCoffee() {
 
@@ -15,8 +16,26 @@ function AddCoffee() {
     const details = form.details.value;
     const photo = form.photo.value;
 
-    const updateCoffee = { name, chef, supplier, taste, category, details, photo }
-    console.log(updateCoffee);
+    const newCoffee = { name, chef, supplier, taste, category, details, photo }
+    // console.log(newCoffee);
+
+    fetch('http://localhost:5000/add-coffee', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newCoffee)
+    })
+      .then(res => res.json())
+      .then(date => {
+        console.log(date);
+        Swal.fire({
+          title: 'Success !',
+          text: 'New Coffee Added',
+          icon: 'success',
+          confirmButtonText: 'Close'
+        })
+      })
   }
 
   return (
