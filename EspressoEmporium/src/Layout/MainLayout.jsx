@@ -6,7 +6,7 @@ function MainLayout() {
     return (
         <>
             <Header />
-            <main className="text-center my-12 text-2xl">
+            <main className="container mx-auto my-12 px-5">
                 <Outlet />
             </main>
             <Footer />
