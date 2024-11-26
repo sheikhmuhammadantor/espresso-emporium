@@ -6,7 +6,7 @@ function MainLayout() {
     return (
         <>
             <Header />
-            <main>
+            <main className="text-center my-12 text-2xl">
                 <Outlet />
             </main>
             <Footer />
