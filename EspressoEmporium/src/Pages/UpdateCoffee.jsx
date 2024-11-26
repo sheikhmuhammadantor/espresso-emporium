@@ -2,6 +2,23 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function UpdateCoffee() {
+
+  const handelUpdateCoffee = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const name = form.name.value;
+    const chef = form.chef.value;
+    const supplier = form.supplier.value;
+    const taste = form.taste.value;
+    const category = form.category.value;
+    const details = form.details.value;
+    const photo = form.photo.value;
+
+    const updateCoffee = { name, chef, supplier, taste, category, details, photo }
+    console.log(updateCoffee);
+  }
+
   return (
     <section>
       <div className="my-6 ml-8">
@@ -13,8 +30,7 @@ function UpdateCoffee() {
             <h2 className="text-3xl font-semibold mb-3">Update Existing Coffee Details</h2>
             <p className="">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. <br /> As opposed to using Content here.</p>
           </div>
-          <form className="card-body ">
-
+          <form onSubmit={handelUpdateCoffee} className="card-body ">
             {/* Name & Chef */}
             <div className="md:flex justify-between gap-6">
               <div className="form-control w-full">
@@ -30,7 +46,6 @@ function UpdateCoffee() {
                 <input type="text" name="chef" placeholder="Chef Name" className="input input-bordered" required />
               </div>
             </div>
-
             {/* Supplier & Taste */}
             <div className="md:flex justify-between gap-6">
               <div className="form-control w-full">
@@ -46,7 +61,6 @@ function UpdateCoffee() {
                 <input type="text" name="taste" placeholder="Coffee Taste" className="input input-bordered" required />
               </div>
             </div>
-
             {/* Category & Details */}
             <div className="md:flex justify-between gap-6">
               <div className="form-control w-full">
@@ -62,7 +76,6 @@ function UpdateCoffee() {
                 <input type="text" name="details" placeholder="Coffee Details" className="input input-bordered" required />
               </div>
             </div>
-
             {/* Photo  */}
             <div className="md:flex justify-between gap-6">
               <div className="form-control w-full">
@@ -76,7 +89,6 @@ function UpdateCoffee() {
             <div className="mt-8 mx-8 text-center">
               <button className="btn text-[#553b2f] text-lg bg-[#d2b48c] outline-2 outline outline-[#553b2f] outline-offset-0 w-full">Update Coffee Details</button>
             </div>
-
           </form>
         </div>
       </div>
