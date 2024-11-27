@@ -1,12 +1,13 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function UpdateCoffee() {
 
   const coffeeDate = useLoaderData();
   const { _id, name, chef, supplier, taste, category, price, photo } = coffeeDate;
 
-  const handelAddCoffee = (e) => {
+  const handelUpdateCoffee = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -19,6 +20,26 @@ function UpdateCoffee() {
     const photo = form.photo.value;
 
     const updateCoffee = { name, chef, supplier, taste, category, price, photo }
+
+    fetch(`http://localhost:5000/coffee/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updateCoffee)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: 'Success !',
+            text: 'Coffee Updated Successfully !',
+            icon: 'success',
+            confirmButtonText: 'Close'
+          })
+        }
+      })
   }
 
   return (
@@ -32,7 +53,7 @@ function UpdateCoffee() {
             <h2 className="text-3xl font-semibold mb-3">Update Coffee</h2>
             <p className="">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. <br /> As opposed to using Content here.</p>
           </div>
-          <form onSubmit={handelAddCoffee} className="card-body ">
+          <form onSubmit={handelUpdateCoffee} className="card-body ">
             {/* Name & Chef */}
             <div className="md:flex justify-between gap-6">
               <div className="form-control w-full">

@@ -26,14 +26,17 @@ function AddCoffee() {
       body: JSON.stringify(newCoffee)
     })
       .then(res => res.json())
-      .then(date => {
-        console.log(date);
-        Swal.fire({
-          title: 'Success !',
-          text: 'New Coffee Added',
-          icon: 'success',
-          confirmButtonText: 'Close'
-        })
+      .then(data => {
+        console.log(data);
+
+        if (data.insertedId) {
+          Swal.fire({
+            title: 'Success !',
+            text: 'New Coffee Added',
+            icon: 'success',
+            confirmButtonText: 'Close'
+          })
+        }
       })
   }
 
