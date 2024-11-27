@@ -13,11 +13,10 @@ function AddCoffee() {
     const supplier = form.supplier.value;
     const taste = form.taste.value;
     const category = form.category.value;
-    const details = form.details.value;
+    const price = form.price.value;
     const photo = form.photo.value;
 
-    const newCoffee = { name, chef, supplier, taste, category, details, photo }
-    // console.log(newCoffee);
+    const newCoffee = { name, chef, supplier, taste, category, price, photo }
 
     fetch('http://localhost:5000/add-coffee', {
       method: 'POST',
@@ -80,7 +79,7 @@ function AddCoffee() {
                 <input type="text" name="taste" placeholder="Coffee Taste" className="input input-bordered" required />
               </div>
             </div>
-            {/* Category & Details */}
+            {/* Category & Price */}
             <div className="md:flex justify-between gap-6">
               <div className="form-control w-full">
                 <label className="label">
@@ -90,9 +89,9 @@ function AddCoffee() {
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Details</span>
+                  <span className="label-text">Price</span>
                 </label>
-                <input type="text" name="details" placeholder="Coffee Details" className="input input-bordered" required />
+                <input type="text" name="price" placeholder="Coffee Price" className="input input-bordered" required />
               </div>
             </div>
             {/* Photo  */}

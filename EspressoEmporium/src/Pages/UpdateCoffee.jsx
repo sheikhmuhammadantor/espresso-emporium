@@ -1,9 +1,12 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 function UpdateCoffee() {
 
-  const handelUpdateCoffee = (e) => {
+  const coffeeDate = useLoaderData();
+  const { _id, name, chef, supplier, taste, category, price, photo } = coffeeDate;
+
+  const handelAddCoffee = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -12,11 +15,10 @@ function UpdateCoffee() {
     const supplier = form.supplier.value;
     const taste = form.taste.value;
     const category = form.category.value;
-    const details = form.details.value;
+    const price = form.price.value;
     const photo = form.photo.value;
 
-    const updateCoffee = { name, chef, supplier, taste, category, details, photo }
-    console.log(updateCoffee);
+    const updateCoffee = { name, chef, supplier, taste, category, price, photo }
   }
 
   return (
@@ -27,23 +29,23 @@ function UpdateCoffee() {
       <div>
         <div className="bg-[#f4f3f0] w-full shadow-2xl border rounded-2xl py-6">
           <div className="text-center px-4">
-            <h2 className="text-3xl font-semibold mb-3">Update Existing Coffee Details</h2>
+            <h2 className="text-3xl font-semibold mb-3">Update Coffee</h2>
             <p className="">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. <br /> As opposed to using Content here.</p>
           </div>
-          <form onSubmit={handelUpdateCoffee} className="card-body ">
+          <form onSubmit={handelAddCoffee} className="card-body ">
             {/* Name & Chef */}
             <div className="md:flex justify-between gap-6">
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
-                <input type="text" name="name" placeholder="Coffee Name" className="input input-bordered" required />
+                <input type="text" name="name" defaultValue={name} placeholder="Coffee Name" className="input input-bordered" required />
               </div>
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Chef</span>
                 </label>
-                <input type="text" name="chef" placeholder="Chef Name" className="input input-bordered" required />
+                <input type="text" name="chef" defaultValue={chef} placeholder="Chef Name" className="input input-bordered" required />
               </div>
             </div>
             {/* Supplier & Taste */}
@@ -52,28 +54,28 @@ function UpdateCoffee() {
                 <label className="label">
                   <span className="label-text">Supplier</span>
                 </label>
-                <input type="text" name="supplier" placeholder="Supplier Name" className="input input-bordered" required />
+                <input type="text" name="supplier" defaultValue={supplier} placeholder="Supplier Name" className="input input-bordered" required />
               </div>
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Taste</span>
                 </label>
-                <input type="text" name="taste" placeholder="Coffee Taste" className="input input-bordered" required />
+                <input type="text" name="taste" defaultValue={taste} placeholder="Coffee Taste" className="input input-bordered" required />
               </div>
             </div>
-            {/* Category & Details */}
+            {/* Category & Price */}
             <div className="md:flex justify-between gap-6">
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Category</span>
                 </label>
-                <input type="text" name="category" placeholder="Category Name" className="input input-bordered" required />
+                <input type="text" name="category" defaultValue={category} placeholder="Category Name" className="input input-bordered" required />
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Details</span>
+                  <span className="label-text">Price</span>
                 </label>
-                <input type="text" name="details" placeholder="Coffee Details" className="input input-bordered" required />
+                <input type="text" name="price" defaultValue={price} placeholder="Coffee Price" className="input input-bordered" required />
               </div>
             </div>
             {/* Photo  */}
@@ -82,12 +84,12 @@ function UpdateCoffee() {
                 <label className="label">
                   <span className="label-text">Photo</span>
                 </label>
-                <input type="text" name="photo" placeholder="Photo Url" className="input input-bordered" required />
+                <input type="text" name="photo" defaultValue={photo} placeholder="Photo Url" className="input input-bordered" required />
               </div>
             </div>
             {/* Update Button */}
             <div className="mt-8 mx-8 text-center">
-              <button className="btn text-[#553b2f] text-lg bg-[#d2b48c] outline-2 outline outline-[#553b2f] outline-offset-0 w-full">Update Coffee Details</button>
+              <button className="btn text-[#553b2f] text-lg bg-[#d2b48c] outline-2 outline outline-[#553b2f] outline-offset-0 w-full">Update Coffee</button>
             </div>
           </form>
         </div>
