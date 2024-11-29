@@ -50,7 +50,7 @@ function UpdateCoffee() {
       <div>
         <div className="bg-[#f4f3f0] w-full shadow-2xl border rounded-2xl py-6">
           <div className="text-center px-4">
-            <h2 className="text-3xl font-semibold mb-3">Update Coffee</h2>
+            <h2 className="text-3xl font-semibold mb-3">Update Coffee : {name}</h2>
             <p className="">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. <br /> As opposed to using Content here.</p>
           </div>
           <form onSubmit={handelUpdateCoffee} className="card-body ">

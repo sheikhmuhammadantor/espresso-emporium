@@ -4,7 +4,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-function CoffeeCard({ coffee }) {
+function CoffeeCard({ coffee, coffees, setCoffees }) {
 
     const { _id, name, chef, supplier, taste, category, price, photo } = coffee;
 
@@ -19,13 +19,12 @@ function CoffeeCard({ coffee }) {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/coffee/${id}`, {
-                    method: 'DELETE'
-                })
+                fetch(`http://localhost:5000/coffee/${id}`, { method: 'DELETE' })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
                         if (data.deletedCount) {
+                            const newCoffees = coffees.filter((coffee) => coffee._id !== _id);
+                            setCoffees(newCoffees);
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your Coffee has been deleted.",

@@ -1,10 +1,12 @@
 import { Link, useLoaderData } from "react-router-dom"
 import CoffeeCard from "../Components/CoffeeCard";
 import { FiCoffee } from "react-icons/fi";
+import { useState } from "react";
 
 function Home() {
 
   const coffeesData = useLoaderData() || [];
+  const [coffees, setCoffees] = useState(coffeesData);
 
   return (
     <section>
@@ -15,7 +17,7 @@ function Home() {
       </div>
       <div className="grid lg:grid-cols-2 gap-4 p-6 rounded-xl">
         {
-          coffeesData.map((coffee) => <CoffeeCard key={coffee._id} coffee={coffee} />)
+          coffees?.map((coffee) => <CoffeeCard key={coffee._id} coffee={coffee} coffees={coffees} setCoffees={setCoffees} />)
         }
       </div>
     </section>
