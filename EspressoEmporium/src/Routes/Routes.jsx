@@ -10,12 +10,12 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
-        loader: () => fetch('http://localhost:5000/coffee')
+        loader: () => fetch('https://emporium-server-six.vercel.app/coffee')
       },
       {
         path: '/update-coffee/:id',
         element: <UpdateCoffee />,
-        loader: ({params}) => fetch(`http://localhost:5000/coffee/${params.id}`)
+        loader: ({params}) => fetch(`https://emporium-server-six.vercel.app/coffee/${params.id}`)
       },
       {
         path: '/add-coffee',

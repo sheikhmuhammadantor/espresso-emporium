@@ -21,7 +21,7 @@ function UpdateCoffee() {
 
     const updateCoffee = { name, chef, supplier, taste, category, price, photo }
 
-    fetch(`http://localhost:5000/coffee/${_id}`, {
+    fetch(`https://emporium-server-six.vercel.app/coffee/${_id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
