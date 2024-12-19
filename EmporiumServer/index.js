@@ -27,12 +27,18 @@ async function run() {
         // await client.connect();
 
         const coffeeCollection = client.db("coffeeDB").collection('coffee');
-        // const haiku = database.collection("haiku");
 
         app.get('/coffee', async (req, res) => {
-            const cursor = coffeeCollection.find();
+            const skip = parseInt(req.query.skip) || 0;
+            const limit = parseInt(req.query.limit) || 0;
+            const cursor = coffeeCollection.find().skip(skip).limit(limit);
             const result = await cursor.toArray();
             res.send(result);
+        })
+
+        app.get('/coffeeCount', async (req, res) => {
+            const count = await coffeeCollection.estimatedDocumentCount();
+            res.send({ count });
         })
 
         app.get('/coffee/:id', async (req, res) => {

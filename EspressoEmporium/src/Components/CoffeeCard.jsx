@@ -19,7 +19,7 @@ function CoffeeCard({ coffee, coffees, setCoffees }) {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://emporium-server-six.vercel.app/coffee/${id}`, { method: 'DELETE' })
+                fetch(`${import.meta.env.VITE_URL}/coffee/${id}`, { method: 'DELETE' })
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount) {

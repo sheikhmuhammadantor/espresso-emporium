@@ -18,7 +18,7 @@ function AddCoffee() {
 
     const newCoffee = { name, chef, supplier, taste, category, price, photo }
 
-    fetch('https://emporium-server-six.vercel.app/add-coffee', {
+    fetch(`${import.meta.env.VITE_URL}/add-coffee`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
